@@ -59,6 +59,7 @@ secure_ssh(){
 set_basic_iptables(){
     clear
     echo "Setting Iptables rules..."
+    sudo apt-get install -y netfilter-persistent
     sh templates/iptables.sh
     cp templates/iptables.sh /etc/init.d/
     chmod +x /etc/init.d/iptables.sh

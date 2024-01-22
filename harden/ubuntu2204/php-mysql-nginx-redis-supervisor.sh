@@ -56,8 +56,7 @@ install_secure_mariadb(){
     echo -n " configuring MariaDB............ "
     spinner
     apt install -y software-properties-common
-    apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-    sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] https://mariadb.mirror.liquidtelecom.com/repo/10.6/ubuntu focal main'
+    curl -LsS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash -s -- --mariadb-server-version=10.11
     apt update && sudo apt install -y mariadb-server mariadb-client
     mv cp /etc/mysql/my.cnf /etc/mysql/my.cnf.bak
     cp templates/mariadb /etc/mysql/my.cnf; echo " OK"
